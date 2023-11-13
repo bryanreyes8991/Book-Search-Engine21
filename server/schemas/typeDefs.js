@@ -8,7 +8,7 @@ type User {
 }
 
 input Book {
-    BookId: String!
+    bookId: String!
     authors: [Authors]
     description: String!
     title: String!

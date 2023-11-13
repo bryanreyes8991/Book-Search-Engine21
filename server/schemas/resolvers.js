@@ -33,19 +33,19 @@ const resolvers = {
           if (context.user) {
             return await Book.findOneAndUpdate(
                 { _id: context.user._id },
-                { $addToSet: {savedBooks: Book.BookId} }
+                { $addToSet: {savedBooks: Book.bookId} }
             );
           }
           throw AuthenticationError;
         },
-        removeBook: async (parent, { BookId }, context) => {
+        removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
                 const book = await Book.findOneAndDelete({
-                    _id: BookId
+                    _id: bookId
                 });
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: book.BookId } }
+                    { $pull: { savedBooks: book.bookId } }
                 );
                 return book;
             }
