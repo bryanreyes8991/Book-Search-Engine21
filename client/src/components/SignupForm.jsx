@@ -28,7 +28,7 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await createUser(userFormData);
+      const response = useMutation(ADD_USER);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
