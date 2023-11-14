@@ -29,11 +29,11 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addBook: async (parent, { BookId }, context) => {
+        saveBook: async (parent, { bookId }, context) => {
           if (context.user) {
             return await Book.findOneAndUpdate(
                 { _id: context.user._id },
-                { $addToSet: {savedBooks: Book.bookId} }
+                { $addToSet: {savedBooks: bookId} }
             );
           }
           throw AuthenticationError;
